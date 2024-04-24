@@ -32,7 +32,7 @@ if __name__ == '__main__':
         G.add_edge(source, target)
 
     # Divide nodes into batches for parallel processing
-    num_batches = 4
+    num_batches = 32
     node_batches = [list(G.nodes())[i::num_batches] for i in range(num_batches)]
 
     print('Parallelization Begins..')
