@@ -24,7 +24,7 @@ if __name__ == '__main__':
     # Load the arXiv dataset
     dataset = LinkPropPredDataset(name = 'ogbl-ppa')
 
-    graph = dataset[0][0]
+    graph = dataset[0]
     edge_index = graph['edge_index']  # edge index
 
     # Create a new directed graph
