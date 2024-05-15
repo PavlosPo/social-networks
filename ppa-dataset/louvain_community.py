@@ -24,11 +24,20 @@ print('Calculating Louvain Communities...')
 # Calculate katz centrality
 cc_scores = nx.community.louvain_communities(G, backend='cugraph')
 
-# Save in pd.DataFrame
+# Convert communities to a list of lists for easier handling
+communities_list = [list(community) for community in cc_scores]
+
+# Save communities to CSV
+df = pd.DataFrame({'Community': range(len(communities_list))})
+df['Nodes'] = communities_list
+df.to_csv('louvain_communities.csv', index=False)
+
+# Create a DataFrame with each node mapped to its community ID
 print('Saving results...')
-results_df = pd.DataFrame(cc_scores.items(), columns=['Node', 'Louvain Communities'])
+nodes_df = pd.DataFrame([(idx, node) for idx, nodes in enumerate(communities_list) for node in nodes], columns=['CommunityID', 'NodeID'])
 
-# Save results in csv
-results_df.to_csv('louvain_communities.csv', index=False)
-
+# Save the DataFrame to a CSV file
+nodes_df.to_csv('louvain_communities_format_2.csv', index=False)
 print('Done!')
+
+
