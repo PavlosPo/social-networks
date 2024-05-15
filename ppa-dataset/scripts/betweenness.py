@@ -19,6 +19,7 @@ for i in range(graph['num_nodes']):
     source = graph['edge_index'][0][i]
     target = graph['edge_index'][1][i]
     G.add_edge(source, target)
+    
 # Calculate betweenness centrality
 bc_scores = cg.betweenness_centrality(G)
 
